@@ -1,0 +1,21 @@
+{
+  "name": "client_tunnel",
+  "version": "1.0.0",
+  "description": "Create a tunnel to expose a local port through a web socket to a tunnel server",
+  "main": "lib/client.js",
+  "bin": {
+    "tunnel": "bin/tunnel.js",
+    "tunnel_server": "bin/tunnel_server.js"
+  },
+  "author": "Thasso Griebel <thasso.griebel@castlabs.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^8.3.0",
+    "debug": "^4.3.2",
+    "human-readable-ids": "^1.0.4",
+    "node-fetch": "2.0",
+    "pump": "^3.0.0",
+    "uuid": "^8.3.2",
+    "websocket": "^1.0.34"
+  }
+}
