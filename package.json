@@ -13,7 +13,7 @@
     "commander": "^8.3.0",
     "debug": "^4.3.2",
     "human-readable-ids": "^1.0.4",
-    "node-fetch": "2.0",
+    "node-fetch": "2.6",
     "pump": "^3.0.0",
     "uuid": "^8.3.2",
     "websocket": "^1.0.34"
