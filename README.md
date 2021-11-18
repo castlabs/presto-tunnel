@@ -60,3 +60,15 @@ tunnel -h https://tunnel.players.castlabs.com -l 9000
 ```
 
 This will establish a connection to the specified tunnel server and expose the local port 9000.
+You can import the `tunnel` function also in a script and do the same:
+
+```javascript
+const {tunnel} = require('client_tunnel');
+
+tunnel("https://tunnel.players.castlabs.com", 9000).then((url) => {
+    console.log('Connect to tunnel through:', url);
+}).catch(e => {
+    console.error(e.message);
+    process.exit(1);
+});
+```
