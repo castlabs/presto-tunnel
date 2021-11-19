@@ -1,5 +1,5 @@
 {
-  "name": "prestotunnel",
+  "name": "@castlabs/presto-tunnel",
   "version": "1.0.0",
   "description": "Create a tunnel to expose a local port through a web socket to a tunnel server",
   "main": "lib/client.js",
