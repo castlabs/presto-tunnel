@@ -29,7 +29,7 @@ be opened on the server side.
 You can install the server globally:
 
 ```bash
-npm install -g https://github.com/castlabs/client_tunnel 
+npm install -g @castlabs/presto-tunnel 
 ```
 
 ## The Server
@@ -38,7 +38,7 @@ For the server to operate properly, you need to have a wildcard setup for DNS so
 names are properly resolved. Run the server as follows:
 
 ```bash
-#> tunnel_server -h tunnel.players.castlabs.com -p 8085
+prestotunnel-server -h tunnel.players.castlabs.com -p 8085
 ```
 
 The above will start the server and assume that the server name is `tunnel.players.castlabs.com`.
@@ -56,14 +56,14 @@ The tunnel client can be started either as a CLI tool or imported as a module to
 a tunnel as part of a script. From the command line:
 
 ```bash
-tunnel -h https://tunnel.players.castlabs.com -l 9000
+prestotunnel -h https://tunnel.players.castlabs.com -l 9000
 ```
 
 This will establish a connection to the specified tunnel server and expose the local port 9000.
 You can import the `tunnel` function also in a script and do the same:
 
 ```javascript
-const {tunnel} = require('client_tunnel');
+const {tunnel} = require('prestotunnel');
 
 tunnel("https://tunnel.players.castlabs.com", 9000).then((url) => {
     console.log('Connect to tunnel through:', url);

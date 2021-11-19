@@ -1,11 +1,11 @@
 {
-  "name": "client_tunnel",
+  "name": "prestotunnel",
   "version": "1.0.0",
   "description": "Create a tunnel to expose a local port through a web socket to a tunnel server",
   "main": "lib/client.js",
   "bin": {
-    "tunnel": "bin/tunnel.js",
-    "tunnel_server": "bin/tunnel_server.js"
+    "prestotunnel": "bin/prestotunnel.js",
+    "prestotunnel-server": "bin/prestotunnel-server.js"
   },
   "author": "Thasso Griebel <thasso.griebel@castlabs.com>",
   "license": "MIT",
