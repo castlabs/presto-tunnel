@@ -7,6 +7,7 @@ program.option("-p, --port <port>", "The server port", 8085);
 program.option("-h, --host <host>", "The server host name, i.e. tunnel.example.com", "");
 program.option("--non-secure", "Use http instead of https as the scheme for the tunnel sever", false);
 program.option("--sub-domains", "Use sub-domains instead of <name>- prefix", false);
+program.option("-g, --grace-timeout <timeout>", "The grace period if if all connections are lost before a tunnel is removed", 2);
 program.parse(process.argv);
 
 const options = program.opts();
@@ -19,4 +20,4 @@ if(options.host.startsWith("http://") || options.host.startsWith("https://")) {
     process.exit(1);
 }
 
-startServer(options.host, options.port, options.nonSecure ? 'http' : 'https', options.subDomains)
+startServer(options.host, options.port, options.nonSecure ? 'http' : 'https', options.subDomains, options.graceTimeout)
