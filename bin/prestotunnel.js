@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const {program} = require('commander');
-const {tunnel} = require("../lib/client");
+const {createTunnel} = require("../lib/client");
 
 program.version('1.0');
 program.option("-l, --local-port <port>", "The local port to forward")
@@ -19,9 +19,11 @@ if(!options.localPort) {
     process.exit(1);
 }
 
-tunnel(options.host, options.localPort, options.name).then((url) => {
-    console.log('Connect to tunnel through:', url);
+let tunnel = null;
+createTunnel(options.host, options.localPort, options.name).then((t) => {
+    tunnel = t;
+    console.log('Connect to tunnel using', tunnel.tunnelUrl);
 }).catch(e => {
-    console.error(e.message);
+    console.error('Error connecting to tunnel server: ' + e.message);
     process.exit(1);
 });
