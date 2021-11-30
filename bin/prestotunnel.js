@@ -3,8 +3,9 @@ const {program} = require('commander');
 const {createTunnel} = require("../lib/client");
 
 program.version('1.0');
-program.option("-l, --local-port <port>", "The local port to forward")
-program.option("-h, --host <host>", "The tunnel server")
+program.requiredOption("-h, --host <host>", "The tunnel server")
+program.option("-H, --host-name <host-name>", "Overwrite the Host: header with this value.");
+program.requiredOption("-l, --local-port <port>", "The local port to forward")
 program.option("-n, --name <name>", "preferred tunnel name")
 program.parse(process.argv);
 
@@ -20,7 +21,7 @@ if(!options.localPort) {
 }
 
 let tunnel = null;
-createTunnel(options.host, options.localPort, options.name).then((t) => {
+createTunnel(options.host, options.localPort, options.name, options.hostName).then((t) => {
     tunnel = t;
     console.log('Connect to tunnel using', tunnel.tunnelUrl);
 }).catch(e => {
