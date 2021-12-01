@@ -6,6 +6,7 @@ program.version('1.0');
 program.requiredOption("-h, --host <host>", "The tunnel server")
 program.option("-H, --host-name <host-name>", "Overwrite the Host: header with this value.");
 program.requiredOption("-l, --local-port <port>", "The local port to forward")
+program.requiredOption("-L, --local-host <host>", "The local host to connect to. Defaults to 127.0.0.1", "127.0.0.1")
 program.option("-n, --name <name>", "preferred tunnel name")
 program.parse(process.argv);
 
@@ -20,11 +21,21 @@ if(!options.localPort) {
     process.exit(1);
 }
 
-let tunnel = null;
-createTunnel(options.host, options.localPort, options.name, options.hostName).then((t) => {
-    tunnel = t;
-    console.log('Connect to tunnel using', tunnel.tunnelUrl);
-}).catch(e => {
-    console.error('Error connecting to tunnel server: ' + e.message);
+const tunnel = createTunnel({
+    tunnelHost: options.host,
+    localPort: options.localPort,
+    localHost: options.localHost,
+    preferredName: options.name,
+    hostName: options.hostName
+});
+
+tunnel.on('connected', (tunnelUrl) => {
+    console.log('Connect to tunnel using', tunnelUrl);
+});
+
+tunnel.on('error', (error) => {
+    console.error('Error connecting to tunnel server: ' + error.message);
     process.exit(1);
 });
+
+tunnel.connect();
