@@ -6,7 +6,8 @@ program.version('1.0');
 program.requiredOption("-h, --host <host>", "The tunnel server")
 program.option("-H, --host-name <host-name>", "Overwrite the Host: header with this value.");
 program.requiredOption("-l, --local-port <port>", "The local port to forward")
-program.requiredOption("-L, --local-host <host>", "The local host to connect to. Defaults to 127.0.0.1", "127.0.0.1")
+program.option("-L, --local-host <host>", "The local host to connect to. Defaults to 127.0.0.1", "127.0.0.1")
+program.option("--local-name <local-name>", "The host name that will be injected when forwarding requests")
 program.option("-n, --name <name>", "preferred tunnel name")
 program.parse(process.argv);
 
@@ -25,6 +26,7 @@ const tunnel = createTunnel({
     tunnelHost: options.host,
     localPort: options.localPort,
     localHost: options.localHost,
+    localName: options.localName,
     preferredName: options.name,
     hostName: options.hostName
 });
