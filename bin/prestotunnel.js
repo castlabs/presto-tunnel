@@ -36,7 +36,7 @@ tunnel.on('connected', (tunnelUrl) => {
 });
 
 tunnel.on('error', (error) => {
-    console.error('Error connecting to tunnel server: ' + error.message);
+    console.error('Error connecting to tunnel server: ' + error);
     process.exit(1);
 });
 
