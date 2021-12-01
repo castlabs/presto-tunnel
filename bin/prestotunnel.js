@@ -38,4 +38,12 @@ tunnel.on('error', (error) => {
     process.exit(1);
 });
 
+tunnel.on('request', (id, req) => {
+    console.log(new Date(), `> ${id} ${req.method} ${req.path}`)
+});
+
+tunnel.on('response', (id, res) => {
+    console.log(new Date(), `< ${id} ${res.method} ${res.path} ${res.statusCode || '-'}`)
+});
+
 tunnel.connect();
